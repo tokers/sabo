@@ -1,0 +1,5 @@
+*.pyc
+judger/*.pyc
+judger/__pycache__/*
+judger/*.log
+

@@ -1,0 +1,36 @@
+Process Process-4:
+Traceback (most recent call last):
+  File "/usr/lib/python3.4/multiprocessing/process.py", line 254, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.4/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/alex/core/judger/judge_client.py", line 164, in process_task_queue
+    judge(task, judge_client_id, db_lock, logging, log_lock)
+  File "/home/alex/core/judger/judge_client.py", line 145, in judge
+    res,timeused,memoryused = run(submit_id, problem_id, dirs, time_limits, memory_limits, spj, lang)
+  File "/home/alex/core/judger/judge_client.py", line 51, in run
+    fin = open(in_path, 'r')
+FileNotFoundError: [Errno 2] No such file or directory: '/home/alex/core/data/1045/data.in'
+Process Process-1:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/multiprocessing/process.py", line 254, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.5/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/alex/NOJ_JUDGE/judger/judge_client.py", line 192, in process_task_queue
+    task = task_queue.get()
+  File "/usr/local/lib/python3.5/multiprocessing/queues.py", line 94, in get
+    res = self._recv_bytes()
+  File "/usr/local/lib/python3.5/multiprocessing/connection.py", line 216, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+  File "/usr/local/lib/python3.5/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/usr/local/lib/python3.5/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "./judged.py", line 90, in <module>
+    traversal_database(task_queue, db_lock, log_lock)
+  File "./judged.py", line 68, in traversal_database
+    time.sleep(3)
+KeyboardInterrupt

@@ -1,0 +1,164 @@
+INFO:root:2016-08-13 20:40:24.260591, Judge client start... Process ID is 7986
+INFO:root:Initial the task queue, the database lock...
+INFO:root:Make worker process...
+INFO:root:The platform contains 1 CPU core, start these worker process...
+INFO:root:Initial work space for judge client 0...
+INFO:root:2016-08-13 20:40:47.619416, Judge client start... Process ID is 8021
+INFO:root:Initial the task queue, the database lock...
+INFO:root:Make worker process...
+INFO:root:The platform contains 1 CPU core, start these worker process...
+INFO:root:Initial work space for judge client 0...
+INFO:root:2016-08-13 20:41:11.815129, Judge client start... Process ID is 8133
+INFO:root:Initial the task queue, the database lock...
+INFO:root:Make worker process...
+INFO:root:The platform contains 1 CPU core, start these worker process...
+INFO:root:Initial work space for judge client 0...
+INFO:root:GET pending submit, ID:2709, problem ID:1046, SPJ:0
+INFO:root:2016-08-13 21:02:58.942736 Change submit 2709 status to Queuing
+INFO:root:2016-08-13 21:02:58.943717 from judgeclient process:8141, submit ID:2709, problem ID:1046, language:0judge result:Compiling
+INFO:root:2016-08-13 21:02:58.952406 Change submit 2709 status to Compiling
+INFO:root:2016-08-13 21:02:59.582183 from judgeclient process:8141, submit ID:2709, problem ID:1046, language:0judge result:Compilation Success
+INFO:root:2016-08-13 21:02:59.582993 Change submit 2709 status to Running
+INFO:root:2016-08-13 21:03:45.902070, Judge client start... Process ID is 11350
+INFO:root:Initial the task queue, the database lock...
+INFO:root:Make worker process...
+INFO:root:The platform contains 1 CPU core, start these worker process...
+INFO:root:Initial work space for judge client 0...
+INFO:root:GET pending submit, ID:2709, problem ID:1046, SPJ:0
+INFO:root:2016-08-13 21:03:45.928203 Change submit 2709 status to Queuing
+INFO:root:2016-08-13 21:03:45.929171 from judgeclient process:11351, submit ID:2709, problem ID:1046, language:0judge result:Compiling
+INFO:root:2016-08-13 21:03:45.937976 Change submit 2709 status to Compiling
+INFO:root:2016-08-13 21:03:46.493085 from judgeclient process:11351, submit ID:2709, problem ID:1046, language:0judge result:Compilation Success
+INFO:root:2016-08-13 21:03:46.494011 Change submit 2709 status to Running
+INFO:root:2016-08-13 21:03:46.495680 from judgeclient process:11351, submit ID:2709, problem ID:1046, language:0judge result:Submit Failed
+INFO:root:2016-08-13 21:03:54.244433, Judge client start... Process ID is 11377
+INFO:root:Initial the task queue, the database lock...
+INFO:root:Make worker process...
+INFO:root:The platform contains 1 CPU core, start these worker process...
+INFO:root:Initial work space for judge client 0...
+INFO:root:2016-08-13 21:16:21.849989, Judge client start... Process ID is 12897
+INFO:root:Initial the task queue, the database lock...
+INFO:root:Make worker process...
+INFO:root:The platform contains 1 CPU core, start these worker process...
+INFO:root:Initial work space for judge client 0...
+INFO:root:GET pending submit, ID:2710, problem ID:1046, SPJ:0
+INFO:root:2016-08-13 21:16:45.963310 Change submit 2710 status to Queuing
+INFO:root:2016-08-13 21:16:45.964274 from judgeclient process:12905, submit ID:2710, problem ID:1046, language:0judge result:Compiling
+INFO:root:2016-08-13 21:16:45.973098 Change submit 2710 status to Compiling
+INFO:root:2016-08-13 21:16:46.604594 from judgeclient process:12905, submit ID:2710, problem ID:1046, language:0judge result:Compilation Success
+INFO:root:2016-08-13 21:16:46.605411 Change submit 2710 status to Running
+INFO:root:2016-08-13 21:16:46.607178 from judgeclient process:12905, submit ID:2710, problem ID:1046, language:0judge result:Submit Failed
+INFO:root:2016-08-13 21:31:49.085258, Judge client start... Process ID is 14948
+INFO:root:Initial the task queue, the database lock...
+INFO:root:Make worker process...
+INFO:root:The platform contains 1 CPU core, start these worker process...
+INFO:root:Initial work space for judge client 0...
+INFO:root:GET pending submit, ID:2711, problem ID:1046, SPJ:0
+INFO:root:2016-08-13 21:32:13.207186 Change submit 2711 status to Queuing
+INFO:root:2016-08-13 21:32:13.208450 from judgeclient process:14956, submit ID:2711, problem ID:1046, language:0judge result:Compiling
+INFO:root:2016-08-13 21:32:13.219217 Change submit 2711 status to Compiling
+INFO:root:2016-08-13 21:32:13.872711 from judgeclient process:14956, submit ID:2711, problem ID:1046, language:0judge result:Compilation Success
+INFO:root:2016-08-13 21:32:13.873447 Change submit 2711 status to Running
+INFO:root:2016-08-13 21:32:13.876628 from judgeclient process:14956, submit ID:2711, problem ID:1046, language:0judge result:Accepted
+INFO:root:GET pending submit, ID:2712, problem ID:1046, SPJ:0
+INFO:root:2016-08-13 23:00:17.968612 from judgeclient process:14956, submit ID:2712, problem ID:1046, language:0judge result:Compiling
+INFO:root:2016-08-13 23:00:17.969342 Change submit 2712 status to Queuing
+INFO:root:2016-08-13 23:00:17.970154 Change submit 2712 status to Compiling
+INFO:root:2016-08-13 23:00:18.491233 from judgeclient process:14956, submit ID:2712, problem ID:1046, language:0judge result:Compilation Success
+INFO:root:2016-08-13 23:00:18.492028 Change submit 2712 status to Running
+INFO:root:2016-08-13 23:00:18.495308 from judgeclient process:14956, submit ID:2712, problem ID:1046, language:0judge result:Submit Failed
+INFO:root:GET pending submit, ID:2713, problem ID:1046, SPJ:0
+INFO:root:2016-08-13 23:04:21.954257 from judgeclient process:14956, submit ID:2713, problem ID:1046, language:0judge result:Compiling
+INFO:root:2016-08-13 23:04:21.954824 Change submit 2713 status to Queuing
+INFO:root:2016-08-13 23:04:21.955488 Change submit 2713 status to Compiling
+INFO:root:2016-08-13 23:04:23.296296 from judgeclient process:14956, submit ID:2713, problem ID:1046, language:0judge result:Compilation Success
+INFO:root:2016-08-13 23:04:23.297113 Change submit 2713 status to Running
+INFO:root:2016-08-13 23:04:23.300177 from judgeclient process:14956, submit ID:2713, problem ID:1046, language:0judge result:Submit Failed
+INFO:root:GET pending submit, ID:2714, problem ID:1046, SPJ:0
+INFO:root:2016-08-14 09:50:06.073697 from judgeclient process:14956, submit ID:2714, problem ID:1046, language:0judge result:Compiling
+INFO:root:2016-08-14 09:50:06.074345 Change submit 2714 status to Queuing
+INFO:root:2016-08-14 09:50:06.075106 Change submit 2714 status to Compiling
+INFO:root:2016-08-14 09:50:06.696373 from judgeclient process:14956, submit ID:2714, problem ID:1046, language:0judge result:Compilation Success
+INFO:root:2016-08-14 09:50:06.697357 Change submit 2714 status to Running
+INFO:root:2016-08-14 09:50:06.701128 from judgeclient process:14956, submit ID:2714, problem ID:1046, language:0judge result:Accepted
+INFO:root:GET pending submit, ID:2715, problem ID:1046, SPJ:0
+INFO:root:2016-08-14 10:03:36.364557 from judgeclient process:14956, submit ID:2715, problem ID:1046, language:0judge result:Compiling
+INFO:root:2016-08-14 10:03:36.365354 Change submit 2715 status to Queuing
+INFO:root:2016-08-14 10:03:36.366232 Change submit 2715 status to Compiling
+INFO:root:2016-08-14 10:03:37.599106 from judgeclient process:14956, submit ID:2715, problem ID:1046, language:0judge result:Compilation Success
+INFO:root:2016-08-14 10:03:37.599851 Change submit 2715 status to Running
+INFO:root:2016-08-14 10:03:37.602841 from judgeclient process:14956, submit ID:2715, problem ID:1046, language:0judge result:Submit Failed
+INFO:root:GET pending submit, ID:2716, problem ID:1022, SPJ:0
+INFO:root:2016-08-14 10:19:31.174329 from judgeclient process:14956, submit ID:2716, problem ID:1022, language:0judge result:Compiling
+INFO:root:2016-08-14 10:19:31.174920 Change submit 2716 status to Queuing
+INFO:root:2016-08-14 10:19:31.175695 Change submit 2716 status to Compiling
+INFO:root:2016-08-14 10:19:31.674547 from judgeclient process:14956, submit ID:2716, problem ID:1022, language:0judge result:Compilation Success
+INFO:root:2016-08-14 10:19:31.675322 Change submit 2716 status to Running
+INFO:root:2016-08-14 10:19:31.678719 from judgeclient process:14956, submit ID:2716, problem ID:1022, language:0judge result:Accepted
+INFO:root:GET pending submit, ID:2717, problem ID:1070, SPJ:0
+INFO:root:2016-08-14 10:20:10.328250 from judgeclient process:14956, submit ID:2717, problem ID:1070, language:0judge result:Compiling
+INFO:root:2016-08-14 10:20:10.328807 Change submit 2717 status to Queuing
+INFO:root:2016-08-14 10:20:10.329497 Change submit 2717 status to Compiling
+INFO:root:2016-08-14 10:20:10.924171 from judgeclient process:14956, submit ID:2717, problem ID:1070, language:0judge result:Compilation Success
+INFO:root:2016-08-14 10:20:10.925027 Change submit 2717 status to Running
+INFO:root:2016-08-14 10:20:10.929588 from judgeclient process:14956, submit ID:2717, problem ID:1070, language:0judge result:Wrong Answer
+INFO:root:GET pending submit, ID:2718, problem ID:1070, SPJ:0
+INFO:root:2016-08-15 21:13:26.218696 from judgeclient process:14956, submit ID:2718, problem ID:1070, language:0judge result:Compiling
+INFO:root:2016-08-15 21:13:26.219219 Change submit 2718 status to Queuing
+INFO:root:2016-08-15 21:13:26.219902 Change submit 2718 status to Compiling
+INFO:root:2016-08-15 21:13:26.749591 from judgeclient process:14956, submit ID:2718, problem ID:1070, language:0judge result:Compilation Success
+INFO:root:2016-08-15 21:13:26.750394 Change submit 2718 status to Running
+INFO:root:2016-08-15 21:13:26.778134 from judgeclient process:14956, submit ID:2718, problem ID:1070, language:0judge result:Wrong Answer
+INFO:root:GET pending submit, ID:2719, problem ID:1000, SPJ:0
+INFO:root:2016-08-16 21:57:07.984979 from judgeclient process:14956, submit ID:2719, problem ID:1000, language:0judge result:Compiling
+INFO:root:2016-08-16 21:57:07.985551 Change submit 2719 status to Queuing
+INFO:root:2016-08-16 21:57:07.986202 Change submit 2719 status to Compiling
+INFO:root:2016-08-16 21:57:08.473033 from judgeclient process:14956, submit ID:2719, problem ID:1000, language:0judge result:Compilation Success
+INFO:root:2016-08-16 21:57:08.473800 Change submit 2719 status to Running
+INFO:root:2016-08-16 21:57:08.478896 from judgeclient process:14956, submit ID:2719, problem ID:1000, language:0judge result:Accepted
+INFO:root:2016-08-17 21:18:40.682075, Judge client start... Process ID is 1833
+INFO:root:Initial the task queue, the database lock...
+INFO:root:Make worker process...
+INFO:root:The platform contains 1 CPU core, start these worker process...
+INFO:root:Initial work space for judge client 0...
+INFO:root:2016-08-17 21:18:42.562975, Judge client start... Process ID is 1844
+INFO:root:Initial the task queue, the database lock...
+INFO:root:Make worker process...
+INFO:root:The platform contains 1 CPU core, start these worker process...
+INFO:root:Initial work space for judge client 0...
+INFO:root:2016-08-31 14:10:30.696681, Judge client start... Process ID is 12229
+INFO:root:Initial the task queue, the database lock...
+INFO:root:Make worker process...
+INFO:root:The platform contains 1 CPU core, start these worker process...
+INFO:root:Initial work space for judge client 0...
+INFO:root:GET pending submit, ID:2720, problem ID:1000, SPJ:0
+INFO:root:2016-08-31 14:10:30.729561 Change submit 2720 status to Queuing
+INFO:root:2016-08-31 14:10:30.730657 from judgeclient process:12237, submit ID:2720, problem ID:1000, language:0judge result:Compiling
+INFO:root:2016-08-31 14:10:30.740210 Change submit 2720 status to Compiling
+INFO:root:2016-08-31 14:10:32.068274 from judgeclient process:12237, submit ID:2720, problem ID:1000, language:0judge result:Compilation Success
+INFO:root:2016-08-31 14:10:32.069077 Change submit 2720 status to Running
+INFO:root:2016-08-31 14:10:32.085897 from judgeclient process:12237, submit ID:2720, problem ID:1000, language:0judge result:Accepted
+INFO:root:2016-09-04 13:10:28.115959, Judge client start... Process ID is 12838
+INFO:root:Initial the task queue, the database lock...
+INFO:root:Make worker process...
+INFO:root:The platform contains 1 CPU core, start these worker process...
+INFO:root:Initial work space for judge client 0...
+INFO:root:GET pending submit, ID:2721, problem ID:1000, SPJ:0
+INFO:root:2016-09-04 13:10:28.143056 Change submit 2721 status to Queuing
+INFO:root:2016-09-04 13:10:28.143965 from judgeclient process:12839, submit ID:2721, problem ID:1000, language:0judge result:Compiling
+INFO:root:2016-09-04 13:10:28.152687 Change submit 2721 status to Compiling
+INFO:root:2016-09-04 13:10:28.677572 from judgeclient process:12839, submit ID:2721, problem ID:1000, language:0judge result:Compilation Success
+INFO:root:2016-09-04 13:10:28.678378 Change submit 2721 status to Running
+INFO:root:2016-09-04 13:10:28.682791 from judgeclient process:12839, submit ID:2721, problem ID:1000, language:0judge result:Accepted
+INFO:root:2016-09-04 13:12:43.222504, Judge client start... Process ID is 13253
+INFO:root:Initial the task queue, the database lock...
+INFO:root:Make worker process...
+INFO:root:The platform contains 1 CPU core, start these worker process...
+INFO:root:Initial work space for judge client 0...
+INFO:root:GET pending submit, ID:2722, problem ID:1000, SPJ:0
+INFO:root:2016-09-04 13:13:16.372437 Change submit 2722 status to Queuing
+INFO:root:2016-09-04 13:13:16.373759 from judgeclient process:13261, submit ID:2722, problem ID:1000, language:0judge result:Compiling
+INFO:root:2016-09-04 13:13:16.383987 Change submit 2722 status to Compiling
+INFO:root:2016-09-04 13:13:16.940289 from judgeclient process:13261, submit ID:2722, problem ID:1000, language:0judge result:Compilation Success
+INFO:root:2016-09-04 13:13:16.941050 Change submit 2722 status to Running
+INFO:root:2016-09-04 13:13:16.945593 from judgeclient process:13261, submit ID:2722, problem ID:1000, language:0judge result:Accepted
