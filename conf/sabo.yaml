@@ -1,0 +1,47 @@
+#################################################################################
+# ACMICPC problem offline judger Sabo
+# Copyright (C) 2016  zchao1995@gmail.com(Zhang Chao)
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#################################################################################
+
+# base conf
+base:
+    daemon: true # as daemon process
+    java_path: /usr/local/jdk/bin/java # java path, if you want to using java, you must set it
+    cocurrent: 1 # count of subprocess running simultaneously
+    stacksize: 8192 # KB
+    debug: false # if true, debug info will be print to log
+    maxtime: 60000 # MS
+    maxmem: 65536 # KB
+    mintime: 1000 # MS
+    minmem: 65536 # KB
+    log_path: /var/log/sabo
+    work_path: /tmp/sabo/
+    data_path: /home/vagrant/Project/NOJ/data/
+    str_filter: false # if str_filter is true, simple str filter will be used firstly
+    filter_key_words:
+        - system
+        - pause
+
+
+# database
+db:
+    db_retry: 3 # failed times for connecting database or executing sql
+    db_type: mysql # sabo-v1.0 only suppory for mysql
+    db_addr: 127.0.0.1
+    db_port: 3306
+    db_user: alex
+    db_name: jol
+    db_passwd: xxxxx

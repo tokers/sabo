@@ -2,9 +2,7 @@
 using namespace std;
 
 int main() {
-    int a, b;
-    while (cin >> a >> b) {
-        cout << a + b << endl;
-    }
+    printf("heela");
+    cout << "asd"<< endl;
     return 0;
 }
