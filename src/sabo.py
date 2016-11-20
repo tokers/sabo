@@ -81,7 +81,8 @@ def sabo_run(conf_path):
         sys.exit()
 
     if conf["base"]["daemon"]:
-        sabo_daemon(conf["base"]["work_path"])
+        pass
+        # sabo_daemon(conf["base"]["work_path"])
 
     task_queue, result_queue = sabo_init(conf)
     cocurrent = conf["base"]["cocurrent"]

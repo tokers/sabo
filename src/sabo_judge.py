@@ -15,9 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from shutil import move
 from sabo_database import sabo_change_states
 from sabo_database import sabo_update_result
+from sabo_database import sabo_write_ce_info
 from sabo_log import sabo_error_log
 
 from config import code_lang
@@ -90,7 +90,6 @@ def run(submit_id, problem_id, code_path, time_limits, memory_limits, is_spj,
     }
 
     result = sabo_core.run(runcfg)
-    print(result[0], result[1], result[2])
     fin.close()
     fuser.close()
 
@@ -137,10 +136,20 @@ def sabo_judge(conf, task, dirs):
         source_code_name += 'c'
     elif lang == 2:
         source_code_name += 'java'
-        time_limits *= conf["base"]["java_relax"]
-        memory_limits *= conf["base"]["java_relax"]
+        time_limits += conf["base"]["java_bonus_time"]
+        memory_limits += conf["base"]["java_bonus_mem"]
     else:
         return
+
+    if time_limits > conf["base"]["maxtime"]:
+        time_limits = conf["base"]["maxtime"]
+    elif time_limits < conf["base"]["mintime"]:
+        time_limits = conf["base"]["mintime"]
+
+    if memory_limits > conf["base"]["maxmem"]:
+        memory_limits = conf["base"]["maxmem"]
+    elif memory_limits < conf["base"]["minmem"]:
+        memory_limits = conf["base"]["minmem"]
 
     if spj == '1':
         spj_path = None

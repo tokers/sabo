@@ -209,7 +209,7 @@ sabo_get_process_runmem(const struct rusage *runinfo, int use_sandbox, pid_t chi
 
     if (!use_sandbox) {
         /* for java */
-        return runinfo->ru_minflt * getpagesize();
+        return runinfo->ru_minflt * (getpagesize() >> 10);
     } else {
         return sabo_get_proc_status("VmPeak:", child);
     }
@@ -254,12 +254,14 @@ sabo_monitor_run(pid_t child, const sabo_run_config *config, sabo_result_info *r
         if (!in_spj_run && time_used > config->time_limits) {
             sabo_kill(child);
             judge_flag = 2;
+            time_used = config->time_limits;
             break;
         }
 
         if (!in_spj_run && memory_used > config->memory_limits) {
             sabo_kill(child);
             judge_flag = 3;
+            memory_used = config->memory_limits;
             break;
         }
 

@@ -21,23 +21,24 @@ import os
 sabo_db = ["mysql"]
 
 base_default_list = {
-    "java_path"    : None,
-    "log_path"     : "/var/log/",
-    "work_path"    : "/tmp/",
+    "java_path"           : None,
+    "log_path"            : "/var/log/",
+    "work_path"           : "/tmp/",
 
-    "daemon"       : True,
-    "debug"        : False,
-    "str_filter"   : False,
+    "daemon"              : True,
+    "str_filter"          : False,
 
-    "stacksize"    : 8192,
-    "cocurrent"    : os.cpu_count(),
-    "maxtime"      : 60 * 1000,
-    "mintime"      : 1000,
-    "minmem"       : 1000,
-    "maxmem"       : 65536 * 4,
+    "stacksize"           : 8192,
+    "cocurrent"           : os.cpu_count(),
+    "maxtime"             : 60 * 1000,
+    "mintime"             : 1000,
+    "minmem"              : 1000,
+    "maxmem"              : 65536 * 4,
+    "java_bonus_time"     : 1000,
+    "java_bonus_mem"      : 65536,
 
-    "filter_words" : None,
-    "data_path"    : None,
+    "filter_key_words"    : None,
+    "data_path"           : None,
 }
 
 db_default_list = {
@@ -53,21 +54,24 @@ db_default_list = {
 }
 
 base_check_list = {
-    "java_path" : str,
-    "log_path"  : str,
-    "work_path" : str,
-    "data_path" : str,
+    "java_path"        : str,
+    "log_path"         : str,
+    "work_path"        : str,
+    "data_path"        : str,
 
-    "daemon"    : bool,
-    "debug"     : bool,
-    "str_filter": bool,
+    "daemon"           : bool,
+    "str_filter"       : bool,
 
-    "stacksize" : int,
-    "cocurrent" : int,
-    "maxtime"   : int,
-    "mintime"   : int,
-    "minmem"    : int,
-    "maxmem"    : int,
+    "stacksize"        : int,
+    "cocurrent"        : int,
+    "maxtime"          : int,
+    "mintime"          : int,
+    "minmem"           : int,
+    "maxmem"           : int,
+    "java_bonus_time"  : int,
+    "java_bonus_mem"   : int,
+
+    "filter_key_words" : list,
 }
 
 db_check_list = {

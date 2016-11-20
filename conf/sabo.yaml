@@ -20,9 +20,10 @@
 base:
     daemon: true # as daemon process
     java_path: /usr/local/jdk/bin/java # java path, if you want to using java, you must set it
+    java_bonus_time: 1000
+    java_bonus_mem: 65536
     cocurrent: 1 # count of subprocess running simultaneously
     stacksize: 8192 # KB
-    debug: false # if true, debug info will be print to log
     maxtime: 60000 # MS
     maxmem: 65536 # KB
     mintime: 1000 # MS

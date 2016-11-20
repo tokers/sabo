@@ -134,10 +134,10 @@ def sabo_write_ce_info(submit_id, ceinfo, db_conf):
     cursor = db.cursor()
     for i in range(db_conf["db_retry"]):
         try:
-            cursor.execute(conf.get_ceinfo.format(submit_id))
-            find_all = db_cursor.fetchall()
+            cursor.execute(config.get_ceinfo.format(submit_id))
+            find_all = cursor.fetchall()
             if find_all is None or len(find_all) == 0:
-                cursor.execute(config.insert_ce_info_sql.format(submit_id,ce_info))
+                cursor.execute(config.insert_ce_info_sql.format(submit_id, ceinfo))
             else:
                 cursor.execute(config.update_ceinfo.format(ce_info, submit_id))
 
