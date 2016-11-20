@@ -61,7 +61,7 @@
 #define   SABO_WA               4
 #define   SABO_RE               5
 #define   SABO_SYSERR           8
-#define   SABO_RE_DBZ           9
+#define   SABO_RE_DBZ           5
 #define   SABO_MC               10
 #define   SABO_UNLIMIT          -1
 

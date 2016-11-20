@@ -123,6 +123,7 @@ sabo_get_proc_status(const char *item, pid_t pid)
     unsigned int res = 0;
     int itemlen = strlen(item);
     while (fgets(name, NAME_MAX - 1, p)) {
+        name[NAME_MAX - 1] = '\0';
         if (strncmp(item, name, itemlen) == 0) {
             sscanf(name + itemlen + 1, "%d", &res);
             break;
@@ -211,7 +212,7 @@ sabo_get_process_runmem(const struct rusage *runinfo, int use_sandbox, pid_t chi
         /* for java */
         return runinfo->ru_minflt * (getpagesize() >> 10);
     } else {
-        return sabo_get_proc_status("VmPeak:", child);
+        return sabo_get_proc_status("VmData:", child);
     }
 }
 

@@ -93,7 +93,7 @@ def run(submit_id, problem_id, code_path, time_limits, memory_limits, is_spj,
     fin.close()
     fuser.close()
 
-    if result[0] != judge_map["Accepted"] or is_spj:
+    if result[0] != judge_map["Accepted"] or int(is_spj):
         return result
     else:
         fuser = open(user_path, 'r')
@@ -116,6 +116,16 @@ def run(submit_id, problem_id, code_path, time_limits, memory_limits, is_spj,
                     res = judge_map["Wrong Answer"]
 
         return res, result[1], result[2]
+
+
+def sabo_filter_source(source, key_list):
+    source = source.lower()
+    for key in key_list:
+        key = key.lower()
+        if key in source:
+            return False
+
+    return True
 
 
 def sabo_judge(conf, task, dirs):
@@ -166,6 +176,13 @@ def sabo_judge(conf, task, dirs):
         with io.open(spj_save_path, 'w', encoding='utf8') as fw:
             with open(spj_path, 'r') as fr:
                 fw.write(fr.read())
+
+    if conf["base"]["str_filter"] and not sabo_filter_source(source,
+            conf["base"]["filter_key_words"]):
+        sabo_update_result(db_conf, judge_map["Malicious Code"], 0, 0, submit_id)
+        sabo_error_log("info", "solution_id: {0}, problem_id: {1}, lang: {2}, judged: {3}, timeused: {4}, memoryused: {5}".format(submit_id,
+                    problem_id, lang, "Malicious Code", 0, 0))
+        return
 
     source_code_save_path = os.path.join(dirs, source_code_name)
     with io.open(source_code_save_path, 'w', encoding='utf8') as f:
