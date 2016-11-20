@@ -14,6 +14,9 @@
 # GNU General Public License for more details.  * * You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+pip3 install pyyaml
+pip3 install mysqlclient
+
 cd ./src/core
 python3 setup.py build_ext --inplace
 mv *.so ../
