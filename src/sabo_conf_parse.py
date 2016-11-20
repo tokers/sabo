@@ -7,7 +7,7 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -41,13 +41,15 @@ base_default_list = {
 }
 
 db_default_list = {
-    "db_type"   : None,
-    "db_user"   : None,
-    "db_passwd" : None,
+    "db_type"     : None,
+    "db_user"     : None,
+    "db_passwd"   : None,
+    "db_name"     : None,
 
-    "db_retry"  : 3,
-    "db_port"   : 3306,
-    "db_addr"   : "127.0.0.1"
+    "db_retry"    : 3,
+    "db_interval" : 5,
+    "db_port"     : 3306,
+    "db_addr"     : "127.0.0.1",
 }
 
 base_check_list = {
@@ -69,13 +71,15 @@ base_check_list = {
 }
 
 db_check_list = {
-    "db_type"   : str,
-    "db_user"   : str,
-    "db_passwd" : str,
-    "db_addr"   : str,
+    "db_type"     : str,
+    "db_user"     : str,
+    "db_passwd"   : str,
+    "db_addr"     : str,
+    "db_name"     : str,
 
-    "db_port"   : int,
-    "db_retry"  : int,
+    "db_port"     : int,
+    "db_retry"    : int,
+    "db_interval" : int,
 }
 
 
@@ -84,7 +88,7 @@ def sabo_check_dict_item(conf, check_list, default_list):
         if item not in conf:
             conf[item] = default_list[item]
         if not isinstance(conf[item], check_list[item]):
-            return "unexpected type {0} of item {1}".format(type(conf[item], item))
+            return "unexpected type {0} of item {1}".format(type(conf[item]),item)
 
 
 def sabo_check_item(conf):
@@ -99,7 +103,7 @@ def sabo_check_item(conf):
     db_conf = conf.get("db", {})
     if not isinstance(base_conf, dict):
         return "unexpected type {0} of item '{1}'".format(type(db_conf), "db")
-    
+
     errinfo = sabo_check_dict_item(db_conf, db_check_list, db_default_list)
     if errinfo:
         return errinfo

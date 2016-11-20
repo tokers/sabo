@@ -60,6 +60,7 @@
 #define   SABO_MLE              3
 #define   SABO_WA               4
 #define   SABO_RE               5
+#define   SABO_SYSERR           8
 #define   SABO_RE_DBZ           9
 #define   SABO_MC               10
 #define   SABO_UNLIMIT          -1
@@ -80,10 +81,10 @@
  * user_path path of user.out(user program run result)
  * time_limits you know
  * memory_limits you know
- * is_spj judge type if TRUE then this is a special judge 
+ * is_spj judge type if TRUE then this is a special judge
  * spj_path is is meaningful if is_spj is TRUE, the spj src code path, name is
  * spj.cc (only support C and C++)
- * 
+ *
  */
 typedef struct {
     const char *exe;

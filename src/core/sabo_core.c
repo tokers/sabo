@@ -6,7 +6,7 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -48,7 +48,8 @@ static void sabo_kill(pid_t child);
 static int sabo_check_accessfile(const char * filepath, int flag);
 static int sabo_hack_open_file(struct user_regs_struct *reg, pid_t child);
 static unsigned int sabo_get_process_runtime(const struct rusage *runinfo);
-static unsigned int sabo_get_process_runmem(const struct rusage *runinfo);
+static unsigned int sabo_get_process_runmem(const struct rusage *runinfo, int use_sandbox, pid_t child);
+static unsigned int sabo_get_proc_status(const char *item, pid_t pid);
 PyMODINIT_FUNC PyInit_sabo_core(void);
 static PyObject* py_run(PyObject *self, PyObject *args);
 char* process_arg(PyObject *arg);
@@ -108,10 +109,36 @@ sabo_check_accessfile(const char * filepath, int flag)
 }
 
 
-/* 
+static unsigned int
+sabo_get_proc_status(const char *item, pid_t pid)
+{
+    static int last_use = 0;
+    char name[NAME_MAX];
+    snprintf(name, sizeof(name), "/proc/%d/status", pid);
+    FILE *p = fopen(name, "r");
+    if (p == NULL) {
+        return last_use;
+    }
+
+    unsigned int res = 0;
+    int itemlen = strlen(item);
+    while (fgets(name, NAME_MAX - 1, p)) {
+        if (strncmp(item, name, itemlen) == 0) {
+            sscanf(name + itemlen + 1, "%d", &res);
+            break;
+        }
+    }
+
+    fclose(p);
+    last_use = res;
+    return res;
+}
+
+
+/*
  * this function is used to get the filepath and flag, reference:
  * https://github.com/lodevil/Lo-runner
- * if long is 4 bytes, 4 char 
+ * if long is 4 bytes, 4 char
  * if long is 8 bytes, 8 char
  * FIXME: this logic need to improve
  */
@@ -168,7 +195,7 @@ sabo_get_process_runtime(const struct rusage *runinfo)
 
 
 static unsigned int
-sabo_get_process_runmem(const struct rusage *runinfo)
+sabo_get_process_runmem(const struct rusage *runinfo, int use_sandbox, pid_t child)
 {
     /*
      * Get the used memory
@@ -180,7 +207,12 @@ sabo_get_process_runmem(const struct rusage *runinfo)
      * size of the process tree
      */
 
-    return runinfo->ru_majflt * getpagesize();
+    if (!use_sandbox) {
+        /* for java */
+        return runinfo->ru_minflt * getpagesize();
+    } else {
+        return sabo_get_proc_status("VmPeak:", child);
+    }
 }
 
 
@@ -203,14 +235,33 @@ sabo_monitor_run(pid_t child, const sabo_run_config *config, sabo_result_info *r
     int time_used;
     long long syscall;
     struct user_regs_struct reg;
-    memory_used = -1;
     time_used = -1;
 
     for ( ; ; ) {
         /* block the monitor process */
         wait4(child, &runstat, 0, &runinfo);
-        memory_used = sabo_get_process_runmem(&runinfo);
+        memory_used = sabo_get_process_runmem(&runinfo, use_sandbox, child);
+        if (memory_used == -1) {
+            judge_flag = SABO_SYSERR;
+            time_used = 0;
+            memory_used = 0;
+            sabo_kill(child);
+            break;
+        }
+
         time_used = sabo_get_process_runtime(&runinfo);
+
+        if (!in_spj_run && time_used > config->time_limits) {
+            sabo_kill(child);
+            judge_flag = 2;
+            break;
+        }
+
+        if (!in_spj_run && memory_used > config->memory_limits) {
+            sabo_kill(child);
+            judge_flag = 3;
+            break;
+        }
 
         if (WIFEXITED(runstat)) { /* if the child process exit */
             judge_flag = SABO_AC; /* Note: this AC just stand that the user program is run successfully */
@@ -268,7 +319,7 @@ sabo_monitor_run(pid_t child, const sabo_run_config *config, sabo_result_info *r
 
                 ptrace(PTRACE_SYSCALL, child, NULL, NULL);
                 continue;
-            } 
+            }
         } else {
             if (in_spj_run) {
                 /* not limit the spj.cc supporter need to confirm it */
@@ -313,9 +364,9 @@ sabo_set_limit(const sabo_run_config *config)
 static void
 sabo_child_run(const sabo_run_config *config, int spj_run)
 {
-    /* Note: Only the one using use_sandbox option 
+    /* Note: Only the one using use_sandbox option
      * will execute that.*/
-    
+
     /*Trace itself */
     ptrace(PTRACE_TRACEME, 0, NULL, NULL);
 
@@ -323,8 +374,8 @@ sabo_child_run(const sabo_run_config *config, int spj_run)
     freopen(config->user_path, "w", stdout);
     freopen("/dev/null", "w", stderr);
 
-    /* 
-     * set time limits and memory limits 
+    /*
+     * set time limits and memory limits
      * but for spj src file, unnecessary
      * compare user.out with data.out
     */
@@ -343,7 +394,7 @@ sabo_child_run(const sabo_run_config *config, int spj_run)
         execl(config->exe, "Main", NULL);
     } else {
 
-        /* 
+        /*
          * Execute the java program with the jvm security policy
          * Stack size is 8 MB
          */
@@ -361,6 +412,7 @@ sabo_work_spj(const sabo_run_config *config, sabo_result_info *res)
      * and the spj file must be C or C++ now, i will add the java option in the
      * future, ^_^
      */
+
     pid_t child = fork();
 
     if (child < 0) {
@@ -371,7 +423,7 @@ sabo_work_spj(const sabo_run_config *config, sabo_result_info *res)
         sabo_child_run(config, TRUE);
     } else {
         sabo_monitor_run(child, config, res, TRUE);
-    } 
+    }
 }
 
 
@@ -421,10 +473,28 @@ py_run(PyObject *self, PyObject *args) {
 
     sabo_result_info res;
     res.judge_flag = SABO_UNKNOWN;
+
+    if (config.code_path == NULL || config.in_path == NULL ||
+        config.out_path == NULL || config.user_path == NULL ||
+        (config.is_spj && config.spj_path == NULL) ||
+         (config.use_sandbox == 0 && config.exe == NULL)
+         || config.time_limits == 0 || config.memory_limits == 0) {
+        res.judge_flag = SABO_SYSERR;
+
+        return Py_BuildValue("(iii)", res.judge_flag, 0, 0);
+    }
+
+
     res.time_used = -1;
     res.memory_used = -1;
     sabo_core_init();
     sabo_core_run(&config, &res);
+
+    if (res.judge_flag == SABO_TLE) {
+        res.time_used = config.time_limits;
+    } else if (res.judge_flag == SABO_MLE) {
+        res.memory_used = config.memory_limits;
+    }
 
     return Py_BuildValue("(iii)", res.judge_flag, res.time_used, res.memory_used);
 }

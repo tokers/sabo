@@ -7,7 +7,7 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -16,6 +16,7 @@
 
 
 import config
+import time
 import MySQLdb
 from sabo_log import sabo_error_log
 
@@ -26,16 +27,15 @@ def sabo_db_connect(db_conf):
     user    = db_conf["db_user"]
     passwd  = db_conf["db_passwd"]
     db      = db_conf["db_name"]
-    charset = "utf-8"
-    host    = str(ip) + ":" + str(port)
+    charset = "utf8"
 
     for i in range(db_conf["db_retry"]):
         try:
-            mysql_db = MySQLdb.connect(host=host, user=user, passwd=passwd, db=db, charset=charset)
+            mysql_db = MySQLdb.connect(host=ip, port=port, user=user, passwd=passwd, db=db, charset=charset)
         except Exception as e:
             sabo_error_log("error", "Connect to mysql failed: {0}".format(e))
         else:
-            return mysql_db 
+            return mysql_db
 
 
 # if there are some tasks didn't be judged,
@@ -56,8 +56,12 @@ def sabo_traversal_database(task_queue, db_conf):
         if data_for_judge is not None:
             for data in data_for_judge:
                 try:
-                    db_cursor.execute()  
+                    db_cursor.execute(config.get_pending_sql)
+                    submit_id, problem_id, time_limits, memory_limits,lang, spj = db_cursor.fetchall()[0]
+
+                    db_cursor.execute(config.get_solution_soucre_code.format(submit_id))
                     source, = db_cursor.fetchall()[0]
+
                     item_dict = {
                         'submit_id': submit_id,
                         'problem_id': problem_id,
@@ -77,10 +81,10 @@ def sabo_traversal_database(task_queue, db_conf):
                     # put the data to the task queue(process safety).
                     task_queue.put(item_dict)
                     # update the submit status to Queuing
-                    change_status(item_dict, db, 12, log_lock,logging)
+                    sabo_change_states(item_dict, config.judge_map["Queuing"], db_conf)
                     db_cursor.close()
 
-        db.close() 
+        db.close()
         time.sleep(db_conf["db_interval"])
 
 
@@ -90,22 +94,17 @@ def sabo_get_data(db, db_conf):
     db_cursor = db.cursor()
     for i in range(db_conf["db_retry"]):
         try:
-            db_cursor.execute(config.get_pending_sql)  
+            db_cursor.execute(config.get_pending_sql)
             data = db_cursor.fetchall()
         except Exception as e:
             sabo_error_log("error", "get pending data from databse failed: {0}".format(e))
             continue
         else:
-            db_cursor.close() 
+            db_cursor.close()
             return data
 
 
-def sabo_consume_judge_result(result_queue, db_conf):
-    while True:
-        pass
-
-
-def sabo_change_states(item_dict, status_id):
+def sabo_change_states(item_dict, status_id, db_conf):
     db = sabo_db_connect(db_conf)
     if not db:
         return
@@ -122,7 +121,7 @@ def sabo_change_states(item_dict, status_id):
 
         else:
             break
-    
+
     cursor.close()
     db.close()
 
@@ -131,7 +130,7 @@ def sabo_write_ce_info(submit_id, ceinfo, db_conf):
     db = sabo_db_connect(db_conf)
     if not db:
         return
-    
+
     cursor = db.cursor()
     for i in range(db_conf["db_retry"]):
         try:

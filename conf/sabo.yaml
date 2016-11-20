@@ -27,7 +27,7 @@ base:
     maxmem: 65536 # KB
     mintime: 1000 # MS
     minmem: 65536 # KB
-    log_path: /var/log/sabo
+    log_path: /home/vagrant/WorkStation/alex/
     work_path: /tmp/sabo/
     data_path: /home/vagrant/Project/NOJ/data/
     str_filter: false # if str_filter is true, simple str filter will be used firstly
@@ -38,10 +38,11 @@ base:
 
 # database
 db:
+    db_interval: 5
     db_retry: 3 # failed times for connecting database or executing sql
     db_type: mysql # sabo-v1.0 only suppory for mysql
-    db_addr: 127.0.0.1
+    db_addr: 192.168.30.101
     db_port: 3306
-    db_user: alex
+    db_user: root
     db_name: jol
-    db_passwd: xxxxx
+    db_passwd: zc87496604
