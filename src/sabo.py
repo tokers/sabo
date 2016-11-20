@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+import re
 import sys
 import time
 import config
@@ -31,6 +32,8 @@ from os import chdir
 from os import setsid
 from os import umask
 from os import devnull
+from os import listdir
+from shutil import rmtree
 
 from sabo_log import sabo_log_init, sabo_error_log
 from sabo_conf_parse import sabo_yaml_parse
@@ -79,6 +82,13 @@ def sabo_run(conf_path):
     if err:
         print(err)
         sys.exit()
+
+    # remove dirs (last run)
+    pattern = r"^sabo.\d+$"
+    rexp = re.compile(pattern)
+    for element in listdir(conf["base"]["work_path"]):
+        if rexp.match(element):
+            rmtree(path.join(conf["base"]["work_path"], element))
 
     if conf["base"]["daemon"]:
         pass

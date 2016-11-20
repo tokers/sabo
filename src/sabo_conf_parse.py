@@ -28,7 +28,6 @@ base_default_list = {
     "daemon"              : True,
     "str_filter"          : False,
 
-    "stacksize"           : 8192,
     "cocurrent"           : os.cpu_count(),
     "maxtime"             : 60 * 1000,
     "mintime"             : 1000,
@@ -62,7 +61,6 @@ base_check_list = {
     "daemon"           : bool,
     "str_filter"       : bool,
 
-    "stacksize"        : int,
     "cocurrent"        : int,
     "maxtime"          : int,
     "mintime"          : int,
@@ -95,6 +93,15 @@ def sabo_check_dict_item(conf, check_list, default_list):
             return "unexpected type {0} of item {1}".format(type(conf[item]),item)
 
 
+def sabo_check_filter_key_words(key_list):
+    if not key_list:
+        return
+
+    for item in key_list:
+        if not isinstance(item, str):
+            return "unexpected type {0} of item {1}".format(type(item), item)
+
+
 def sabo_check_item(conf):
     base_conf = conf.get("base", {})
     if not isinstance(base_conf, dict):
@@ -112,6 +119,12 @@ def sabo_check_item(conf):
     if errinfo:
         return errinfo
 
+    if conf["base"]["str_filter"]:
+        errinfo = sabo_check_filter_key_words(conf["base"]["filter_key_words"])
+        if errinfo:
+            return errinfo
+
+    # others check
     if db_conf["db_type"].lower() not in sabo_db:
         errinfo = "unexpected db type: {0}".format(db_conf["db_type"])
 
