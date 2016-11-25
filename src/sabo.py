@@ -12,7 +12,9 @@
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.  * * You should have received a copy of the GNU General Public License
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
@@ -91,8 +93,7 @@ def sabo_run(conf_path):
             rmtree(path.join(conf["base"]["work_path"], element))
 
     if conf["base"]["daemon"]:
-        pass
-        # sabo_daemon(conf["base"]["work_path"])
+        sabo_daemon(conf["base"]["work_path"])
 
     task_queue, result_queue = sabo_init(conf)
     cocurrent = conf["base"]["cocurrent"]

@@ -11,7 +11,9 @@
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.  * * You should have received a copy of the GNU General Public License
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
@@ -25,6 +27,7 @@ from config import judge_map
 from config import spj_compile
 from config import lang_tranfer
 from config import judge_status
+from config import clear_files
 
 import io
 import shlex
@@ -63,12 +66,14 @@ def compile(dirs, submit_id, problem_id, lang, is_spj):
 def run(submit_id, problem_id, code_path, time_limits, memory_limits, is_spj,
         lang, conf):
     data_path = conf["base"]["data_path"]
-    in_path = os.path.join(data_path, str(problem_id), 'data.in')
-    out_path = os.path.join(data_path, str(problem_id), 'data.out')
+    in_path   = os.path.join(data_path, str(problem_id), 'data.in')
+    out_path  = os.path.join(data_path, str(problem_id), 'data.out')
     user_path = os.path.join(code_path, 'user.out')
-    spj_path = os.path.join(code_path, 'spj')
-    fin = open(in_path, 'r')
-    fuser = open(user_path, 'w')
+    spj_path  = os.path.join(code_path, 'spj')
+
+    fin       = open(in_path, 'r')
+    fuser     = open(user_path, 'w')
+
     if lang <= 1:
         exe = os.path.join(code_path, 'Main')
         use_sandbox = 1
@@ -210,6 +215,12 @@ def sabo_judge(conf, task, dirs):
         sabo_error_log("info", "solution_id: {0}, problem_id: {1}, lang: {2}, judged: {3}, timeused: {4}, memoryused: {5}" .format(submit_id, problem_id, lang, judge_status[res], timeused, memoryused))
 
 
+def sabo_wind():
+    for item in clear_files:
+        if os.path.isfile(item):
+            os.remove(item)
+
+
 def sabo_workers_do(conf, task_queue, result_queue):
     selfdir = os.path.join(conf["base"]["work_path"], "sabo." + str(os.getpid()))
     if not os.path.isdir(selfdir):
@@ -220,4 +231,5 @@ def sabo_workers_do(conf, task_queue, result_queue):
     while True:
         task = task_queue.get()
         sabo_judge(conf, task, selfdir)
+        sabo_wind()
         task_queue.task_done()
