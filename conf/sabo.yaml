@@ -33,13 +33,14 @@ base:
     data_path: /home/vagrant/Project/NOJ/data/
     str_filter: false # if str_filter is true, simple str filter will be used firstly
     filter_key_words:
-        - system
         - pause
+        - shutdown
+        - restart
 
 
 # database
 db:
-    db_interval: 5
+    db_interval: 3
     db_retry: 3 # failed times for connecting database or executing sql
     db_type: mysql # sabo-v1.0 only suppory for mysql
     db_addr: 192.168.30.101

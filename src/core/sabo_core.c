@@ -10,7 +10,9 @@
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.  * * You should have received a copy of the GNU General Public License
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
@@ -104,7 +106,7 @@ sabo_check_accessfile(const char * filepath, int flag)
             return SABO_ALLOWED;
         }
     }
-    /* sabo_error_log(LOG_WARN, "file %s, not in whitelist", filepath); */
+
     return SABO_FORBIDDEN;
 }
 
@@ -147,7 +149,6 @@ static int
 sabo_hack_open_file(struct user_regs_struct *reg, pid_t child)
 {
     if (reg == NULL) {
-        /* sabo_error_log(LOG_ERR, "function: sabo_hack_open_file, arg: reg null"); */
         return TRUE;
     }
 
@@ -462,17 +463,17 @@ py_run(PyObject *self, PyObject *args) {
     sabo_run_config config;
     PyArg_ParseTuple(args, "O", &judge_config);
 
-    config.exe = process_arg(PyDict_GetItemString(judge_config, "exe"));
-    config.code_path = process_arg(PyDict_GetItemString(judge_config, "code_path"));
-    config.in_path = process_arg(PyDict_GetItemString(judge_config, "in_path"));
-    config.out_path = process_arg(PyDict_GetItemString(judge_config, "out_path"));
-    config.user_path = process_arg(PyDict_GetItemString(judge_config, "user_path"));
-    config.spj_path = process_arg(PyDict_GetItemString(judge_config, "spj_path"));
-    config.time_limits = atoi(process_arg(PyDict_GetItemString(judge_config, "time_limits")));
+    config.exe           = process_arg(PyDict_GetItemString(judge_config, "exe"));
+    config.code_path     = process_arg(PyDict_GetItemString(judge_config, "code_path"));
+    config.in_path       = process_arg(PyDict_GetItemString(judge_config, "in_path"));
+    config.out_path      = process_arg(PyDict_GetItemString(judge_config, "out_path"));
+    config.user_path     = process_arg(PyDict_GetItemString(judge_config, "user_path"));
+    config.spj_path      = process_arg(PyDict_GetItemString(judge_config, "spj_path"));
+    config.time_limits   = atoi(process_arg(PyDict_GetItemString(judge_config, "time_limits")));
     config.memory_limits = atoi(process_arg(PyDict_GetItemString(judge_config, "memory_limits")));
-    config.err_path = "/dev/null";
-    config.is_spj = atoi(process_arg(PyDict_GetItemString(judge_config, "is_spj")));
-    config.use_sandbox = atoi(process_arg(PyDict_GetItemString(judge_config, "use_sandbox")));
+    config.is_spj        = atoi(process_arg(PyDict_GetItemString(judge_config, "is_spj")));
+    config.use_sandbox   = atoi(process_arg(PyDict_GetItemString(judge_config, "use_sandbox")));
+    config.err_path      = "/dev/null";
 
     sabo_result_info res;
     res.judge_flag = SABO_UNKNOWN;
@@ -501,7 +502,6 @@ py_run(PyObject *self, PyObject *args) {
 
     return Py_BuildValue("(iii)", res.judge_flag, res.time_used, res.memory_used);
 }
-
 
 
 static PyMethodDef coreMethods[] = {
