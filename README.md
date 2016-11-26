@@ -13,6 +13,9 @@
 
 ## 介绍
 
+### `Proect Sabo` 的基本架构图
+<img src="http://tokers-test.b0.upaiyun.com/Sabo-db.png", width="500" height="300" alt="Project Sabo">
+
 `Project Sabo` 是一款基于 Python3 和 C 编写的 ACMICPC 在线评测系统，功能简易，目前支持语言仅限于 `C/C++` 和 `JAVA`，支持 Special Judge 模式。
 
 `Project Sabo` 目前采用的方案是通过轮询数据库得到评测数据，因此它高度依赖于数据库表设计，目前采用的数据库表是 [HUSTOJ](https://github.com/svn2github/hustoj) 的 `jol.sql` 文件，采用的数据库是 Mysql；之后的版本会考虑使用 `HTTP` 协议来传输评测题目元数据。
