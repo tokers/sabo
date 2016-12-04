@@ -402,9 +402,8 @@ sabo_child_run(const sabo_run_config *config, int spj_run)
          * Execute the java program with the jvm security policy
          * Stack size is 8 MB
          */
-        execl(config->exe, "java", "-cp", "demo/", "-Xss8M", "-Djava.security.manager", "-Djava.security.policy==policy", "-Djava.awt.headless=TRUE", "Main", NULL);
+        execl(config->exe, "java", "-cp", "./", "-Xss8M", "-Djava.security.manager", "-Djava.security.policy==policy", "-Djava.awt.headless=TRUE", "Main", NULL);
     }
-    /* TODO DB operate */
 }
 
 
