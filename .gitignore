@@ -3,3 +3,4 @@ src/__pycache__
 src/*.so
 demo/*
 src/core/build/*
+conf/*.yaml
