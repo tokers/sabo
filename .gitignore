@@ -4,3 +4,5 @@ src/*.so
 demo/*
 src/core/build/*
 conf/*.yaml
+src/.DS_Store
+src/._.DS_Store
