@@ -1,7 +1,7 @@
 # SABO 
 
 
-<img src="images/sabo.jpg" width="600" height="877" alt="Sabo"/>
+<img src="images/sabo.png" width="600" height="877" alt="Sabo"/>
 ## [Sabo](http://onepiece.wikia.com/wiki/Sabo)
 
 > Sabo is the Revolutionary Army's Chief of Staff, recognized as the "No. 2" of
