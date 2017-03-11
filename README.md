@@ -1,7 +1,7 @@
 # SABO 
 
 
-<img src="http://tokers-test.b0.upaiyun.com/sabo.jpg" width="600" height="877" alt="Sabo"/>
+<img src="images/sabo.jpg" width="600" height="877" alt="Sabo"/>
 ## [Sabo](http://onepiece.wikia.com/wiki/Sabo)
 
 > Sabo is the Revolutionary Army's Chief of Staff, recognized as the "No. 2" of
@@ -14,7 +14,7 @@
 ## 介绍
 
 ### `Proect Sabo` 的基本架构图
-<img src="http://tokers-test.b0.upaiyun.com/Sabo-db.png", width="500" height="300" alt="Project Sabo">
+<img src="images/sabo-db.png", width="500" height="300" alt="Project Sabo">
 
 `Project Sabo` 是一款基于 Python3 和 C 编写的 ACMICPC 在线评测系统，功能简易，目前支持语言仅限于 `C/C++` 和 `JAVA`，支持 Special Judge 模式。
 
