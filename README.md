@@ -14,7 +14,7 @@
 ## 介绍
 
 ### `Proect Sabo` 的基本架构图
-<img src="images/sabo-db.png", width="500" height="300" alt="Project Sabo">
+<img src="images/sabo-db.png" width="500" height="300" alt="Project Sabo">
 
 `Project Sabo` 是一款基于 Python3 和 C 编写的 ACMICPC 在线评测系统，功能简易，目前支持语言仅限于 `C/C++` 和 `JAVA`，支持 Special Judge 模式。
 
